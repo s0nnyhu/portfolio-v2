@@ -1,36 +1,147 @@
 <template>
   <div id="portfolio">
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio quas nihil
-    magnam quos itaque deleniti tempore omnis, sapiente adipisci veritatis
-    architecto recusandae id mollitia eaque molestias voluptates, doloribus quis
-    maxime excepturi cupiditate accusamus blanditiis. Suscipit id sint numquam
-    excepturi? Ab exercitationem aliquid perferendis facere aliquam debitis vero
-    voluptatem labore, molestias eligendi magni accusamus asperiores unde
-    consequatur excepturi ducimus deleniti sed cum itaque aperiam, atque tempore
-    quam harum voluptate. Amet vel corporis voluptas eaque quibusdam odit, nihil
-    voluptatum ea corrupti, provident et velit suscipit totam enim adipisci
-    vitae sint at, laudantium officiis maiores perspiciatis! Blanditiis,
-    reiciendis. Eos soluta minus reiciendis quos dignissimos amet nobis
-    quibusdam illum asperiores odit corporis possimus repellendus dicta optio,
-    vitae similique dolore eaque repudiandae rerum quaerat a, qui blanditiis ex
-    accusamus. Consequuntur consectetur inventore voluptas doloremque. Dolores
-    suscipit optio, expedita repellendus dolorem aspernatur nulla, totam, ipsa
-    cum odit eum laudantium? Debitis quas reprehenderit quisquam eaque. Minus
-    ipsum impedit dolore necessitatibus cum eaque maiores veritatis quis id
-    excepturi beatae nisi reiciendis dignissimos recusandae dicta nam tempore
-    eius nobis, vitae earum porro repudiandae quod accusantium. Non fugit
-    inventore ea?
+    <canvas id="pixie"></canvas>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Portfolio"
+  name: "Portfolio",
+  mounted() {
+    var WIDTH;
+    var HEIGHT;
+    var canvas;
+    var con;
+    var g;
+    var pxs = new Array();
+    var rint = 50;
+
+    WIDTH = window.innerWidth;
+    HEIGHT = window.innerHeight;
+    document.querySelector("#portfolio").style.width = WIDTH + "px";
+    document.querySelector("#portfolio").style.height = HEIGHT + "px";
+
+    canvas = document.getElementById("pixie");
+    document.getElementById("pixie").setAttribute("width", WIDTH);
+    document.getElementById("pixie").setAttribute("height", HEIGHT);
+    con = canvas.getContext("2d");
+    for (var i = 0; i < 50; i++) {
+      pxs[i] = new Circle();
+      pxs[i].reset();
+    }
+    setInterval(draw, rint);
+
+    function draw() {
+      con.clearRect(0, 0, WIDTH, HEIGHT);
+      for (var i = 0; i < pxs.length; i++) {
+        pxs[i].fade();
+        pxs[i].move();
+        pxs[i].draw();
+      }
+    }
+
+    function Circle() {
+      this.s = {
+        ttl: 8000,
+        xmax: 5,
+        ymax: 2,
+        rmax: 10,
+        rt: 1,
+        xdef: 960,
+        ydef: 540,
+        xdrift: 4,
+        ydrift: 4,
+        random: true,
+        blink: true
+      };
+
+      this.reset = function() {
+        this.x = this.s.random ? WIDTH * Math.random() : this.s.xdef;
+        this.y = this.s.random ? HEIGHT * Math.random() : this.s.ydef;
+        this.r = (this.s.rmax - 1) * Math.random() + 1;
+        this.dx = Math.random() * this.s.xmax * (Math.random() < 0.5 ? -1 : 1);
+        this.dy = Math.random() * this.s.ymax * (Math.random() < 0.5 ? -1 : 1);
+        this.hl = (this.s.ttl / rint) * (this.r / this.s.rmax);
+        this.rt = Math.random() * this.hl;
+        this.s.rt = Math.random() + 1;
+        this.stop = Math.random() * 0.2 + 0.4;
+        this.s.xdrift *= Math.random() * (Math.random() < 0.5 ? -1 : 1);
+        this.s.ydrift *= Math.random() * (Math.random() < 0.5 ? -1 : 1);
+      };
+
+      this.fade = function() {
+        this.rt += this.s.rt;
+      };
+
+      this.draw = function() {
+        if (this.s.blink && (this.rt <= 0 || this.rt >= this.hl))
+          this.s.rt = this.s.rt * -1;
+        else if (this.rt >= this.hl) this.reset();
+        var newo = 1 - this.rt / this.hl;
+        con.beginPath();
+        con.arc(this.x, this.y, this.r, 0, Math.PI * 2, true);
+        con.closePath();
+        var cr = this.r * newo;
+        g = con.createRadialGradient(
+          this.x,
+          this.y,
+          0,
+          this.x,
+          this.y,
+          cr <= 0 ? 1 : cr
+        );
+        g.addColorStop(0.0, "rgba(238,180,28," + newo + ")");
+        g.addColorStop(this.stop, "rgba(238,180,28," + newo * 0.2 + ")");
+        g.addColorStop(1.0, "rgba(238,180,28,0)");
+        con.fillStyle = g;
+        con.fill();
+      };
+
+      this.move = function() {
+        this.x += (this.rt / this.hl) * this.dx;
+        this.y += (this.rt / this.hl) * this.dy;
+        if (this.x > WIDTH || this.x < 0) this.dx *= -1;
+        if (this.y > HEIGHT || this.y < 0) this.dy *= -1;
+      };
+
+      this.getX = function() {
+        return this.x;
+      };
+      this.getY = function() {
+        return this.y;
+      };
+    }
+  }
 };
 </script>
 
-<style>
+<style scoped>
+html,
+body,
+div,
+span,
+canvas {
+  margin: 0;
+  padding: 0;
+}
 #portfolio {
-  display: flex;
+  overflow: hidden;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  background: -o-linear-gradient(top, #000, #257eb7);
+  background: -ms-linear-gradient(top, #000, #257eb7);
+  background: -moz-linear-gradient(top, #000, #257eb7);
+  background: -webkit-linear-gradient(top, #000, #021522);
+  background: linear-gradient(top, #000, #257eb7);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#040429', EndColorStr='#257eb7');
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#040429', EndColorStr='#257eb7')";
+}
+
+#pixie {
+  z-index: 10;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 </style>
