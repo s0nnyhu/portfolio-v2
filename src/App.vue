@@ -2,8 +2,10 @@
   <div id="app">
     <!--<button class="btnSwitch" v-on:click="view = !view">Switch universe</button>-->
     <transition name="slide-fade" mode="out-in">
-      <Portfolio v-if="view"></Portfolio>
-      <Universe v-if="!view"></Universe>
+      <Portfolio v-show="view"></Portfolio>
+    </transition>
+    <transition name="slide-fade" mode="out-in">
+      <Universe v-show="!view"></Universe>
     </transition>
   </div>
 </template>
