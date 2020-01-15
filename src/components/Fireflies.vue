@@ -16,9 +16,10 @@ export default {
 
     WIDTH = window.innerWidth;
     HEIGHT = window.innerHeight;
+    /*
     document.querySelector("#portfolio").style.width = WIDTH + "px";
     document.querySelector("#portfolio").style.height = HEIGHT + "px";
-
+  */
     canvas = document.getElementById("pixie");
     document.getElementById("pixie").setAttribute("width", WIDTH);
     document.getElementById("pixie").setAttribute("height", HEIGHT);
@@ -114,11 +115,7 @@ export default {
 };
 </script>
 
-<style scoped>
-html,
-body,
-div,
-span,
+<style>
 canvas {
   margin: 0;
   padding: 0;
