@@ -400,13 +400,14 @@ body {
 	width: 100%;
 	height: 100%;
 	z-index: 8;
+	position: fixed;
 }
 
 .container {
 	padding: 0px;
 	margin: 0px;
 	overflow: hidden;
-	position: fixed;
+
 	display: flex;
 	justify-content: center;
 	align-items: center;
