@@ -1,6 +1,10 @@
 <template>
 	<div class="about-me">
-		<vue-typer text="Hello World! I was registered locally! I'm VueTyper!">
+		<typewriter
+			ref="typewriter_about_me"
+			:interval="20"
+			:style="{ visibility: status }"
+		>
 			<p>
 				Hi, my name is
 				<strong>Sonny</strong>
@@ -26,23 +30,37 @@
 				hesitate to get in touch
 			</p>
 			<p>Portfolio built using VueJs.</p>
-		</vue-typer>
+		</typewriter>
 	</div>
 </template>
 
 <script>
-import { VueTyper } from 'vue-typer';
+import typewriter from 'vue-type-writer';
 export default {
 	name: 'AboutMe',
 	data() {
 		return {
-			textAboutMe: '["Arya Stark","Jon Snow"]'
+			status: 'hidden'
 		};
 	},
 	components: {
-		VueTyper
+		typewriter
+	},
+	methods: {
+		// $emit
+		type() {
+			this.status = 'visible';
+			this.$refs.typewriter_about_me.$emit('typewrite');
+		}
+	},
+	mounted() {
+		this.type();
 	}
 };
 </script>
 
-<style></style>
+<style>
+.about-me {
+	margin-bottom: 150px;
+}
+</style>
