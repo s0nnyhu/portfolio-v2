@@ -39,67 +39,23 @@ export default {
 </script>
 
 <style>
-.skills h1 {
-  line-height: 40px;
-}
 .skills {
-  display: flex;
-  flex-direction: column;
-  /* background: #565656; */
-  padding: 5px;
-  align-content: space-between;
-  justify-content: space-between;
-}
-.skills > div {
-  text-align: center;
-  padding: 10px 0;
-  margin: 5px;
+  display: table;
+  width: 100%;
   margin-bottom: 150px;
 }
-.skills > .languages {
-  /* background-color: #d30058; */
+.languages,
+.framework,
+.tools {
+  display: table-cell;
+  padding: 16px;
 }
-
-.skills > .framework {
-  /* background-color: #36abe1; */
-}
-
-.skills > .tools {
-  /* background-color: #23b776; */
-}
-@media (min-width: 576px) {
-  .skills {
-    flex-flow: row wrap;
-  }
-  .skills > .languages {
-    order: 1;
-    flex: 0.5;
-  }
-  .skills > .framework {
-    order: 2;
-    flex: 0.5;
-  }
-  .skills > .tools {
-    order: 3;
+@media only screen and (max-width: 600px) {
+  .framework,
+  .languages,
+  .tools {
+    display: block;
     width: 100%;
-  }
-}
-
-@media (min-width: 768px) {
-  .skills {
-    flex-flow: row nowrap;
-  }
-  .skills > div {
-    width: 33.33% !important;
-  }
-  .skills > .languages {
-    order: 1;
-  }
-  .skills > .framework {
-    order: 2;
-  }
-  .skills > .tools {
-    order: 3;
   }
 }
 </style>

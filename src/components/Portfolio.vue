@@ -1,5 +1,5 @@
 <template>
-  <div id="portfolio">
+  <div id="portfolio" v-bind:class="{ 'theme-night': theme==='night' }">
     <Fireflies></Fireflies>
     <div class="content">
       <!--Social Bar-->
@@ -14,7 +14,7 @@
       <!--End Menu-->
       <!--Cli-->
       <div v-else class="cli">
-        <Cli user-prompt="binbash"></Cli>
+        <Cli user-prompt="[root@s0nnyhu.github.io ~]#"></Cli>
       </div>
       <!--End Cli-->
       <div class="data">
@@ -34,6 +34,7 @@ import SocialBar from "./SocialBar";
 import AboutMe from "./AboutMe";
 import Skills from "./Skills";
 import Projects from "./Projects";
+import Settings from "./Settings";
 import Cli from "./Cli";
 
 export default {
@@ -52,12 +53,14 @@ export default {
     Cli,
     aboutMe: AboutMe,
     skills: Skills,
-    projects: Projects
+    projects: Projects,
+    Settings: Settings
   },
   mounted() {},
   computed: {
     ...mapGetters({
-      state: "pickedMenu"
+      state: "pickedMenu",
+      theme: "pickedTheme"
     })
   }
 };
@@ -79,7 +82,8 @@ export default {
   position: absolute;
   overflow-y: auto;
   max-width: 100% !important;
-  /*
+}
+.theme-night {
   background: -o-linear-gradient(top, #000, #257eb7);
   background: -ms-linear-gradient(top, #000, #257eb7);
   background: -moz-linear-gradient(top, #000, #257eb7);
@@ -90,12 +94,12 @@ export default {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   /*background-image: url(https://cathydolle.github.io/assets/settings/wallpaper/giyuu_tomioka.svg);*/
 }
+
 /**Menu CSS - Position */
 .menu {
   /*background: rgba(1, 1, 1, 0.2);*/
@@ -122,10 +126,10 @@ export default {
 .cli {
   /*background: rgba(1, 1, 1, 0.2);*/
   overflow: hidden;
-  position: fixed;
-  bottom: 0;
+  position: relative;
   width: 100%;
   margin: 10px;
+  margin-top: 50px;
 }
 .component-fade-enter-active,
 .component-fade-leave-active {

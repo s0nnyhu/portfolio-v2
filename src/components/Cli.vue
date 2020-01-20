@@ -1,8 +1,19 @@
 <template>
-  <span class="command">
-    {{userPrompt}}
-    <input type="text" v-model="typedCommand" v-on:keyup.enter="executeCommand" />
-  </span>
+  <div>
+    <section id="cli-help">
+      <p>A fun experiment for displaying simple info in a geeky manner.</p>
+      <p>
+        <span>
+          Type 'help' +
+          <kbd>Enter</kbd> -- for available commands.
+        </span>
+      </p>
+    </section>
+    <span class="command">
+      {{userPrompt}}
+      <input type="text" v-model="typedCommand" v-on:keyup.enter="executeCommand" />
+    </span>
+  </div>
 </template>
 
 <script>
@@ -18,6 +29,21 @@ export default {
   },
   methods: {
     executeCommand: function() {
+      switch (this.typedCommand) {
+        case "about":
+          this.$store.commit("changeSelectedMenu", "aboutMe");
+          this.$store.commit("updateWasRenderedAboutMe", true);
+          break;
+        case "skills":
+          this.$store.commit("changeSelectedMenu", "skills");
+          break;
+        case "projects":
+          this.$store.commit("changeSelectedMenu", "projects");
+          break;
+        case "settings":
+          this.$store.commit("changeSelectedMenu", "settings");
+          break;
+      }
       this.typedCommand = "";
     }
   }
@@ -39,7 +65,7 @@ input[type="text"] {
   font-family: inherit;
   background: #fff;
   padding: 0 0.5em;
-  width: 95%;
+  width: 55%;
 }
 input[type="text"]:focus {
   background: #fff;
