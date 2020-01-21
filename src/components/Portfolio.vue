@@ -84,11 +84,11 @@ export default {
   max-width: 100% !important;
 }
 .theme-night {
-  background: -o-linear-gradient(top, #000, #257eb7);
-  background: -ms-linear-gradient(top, #000, #257eb7);
-  background: -moz-linear-gradient(top, #000, #257eb7);
+  background: -o-linear-gradient(top, #000, #041c2b);
+  background: -ms-linear-gradient(top, #000, #041c2b);
+  background: -moz-linear-gradient(top, #000, #041c2b);
   background: -webkit-linear-gradient(top, #000, #021522);
-  background: linear-gradient(top, #000, #257eb7);
+  background: linear-gradient(top, #000, #041c2b);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#040429', EndColorStr='#257eb7');
   -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#040429', EndColorStr='#257eb7')";
   background-position: center;
