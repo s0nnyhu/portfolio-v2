@@ -41,6 +41,14 @@ export default {
   methods: {
     changeTheme: function(event) {
       this.$store.commit("changeTheme", event.target.value);
+      const settingsSh = {
+        theme: event.target.value
+      };
+
+      if (window.localStorage.getItem("settingsSh")) {
+        window.localStorage.removeItem("settingsSh");
+        window.localStorage.setItem("settingsSh", JSON.stringify(settingsSh));
+      }
     }
   },
   computed: {

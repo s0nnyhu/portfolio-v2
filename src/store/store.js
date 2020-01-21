@@ -7,11 +7,11 @@ export const store = new Vuex.Store({
     state: {
         pickedMenu: 'aboutMe',
         wasAboutMeRendered: false,
-        pickedTheme: 'normal'
+        pickedTheme: JSON.parse(window.localStorage.getItem('settingsSh')) != null ? JSON.parse(window.localStorage.getItem('settingsSh')).theme : 'normal'
     },
     mutations: {
         changeTheme(state,pickedTheme) {
-            state.pickedTheme = pickedTheme
+            state.pickedTheme = pickedTheme;
         },
         changeSelectedMenu(state,pickedMenu) {
             state.pickedMenu = pickedMenu
