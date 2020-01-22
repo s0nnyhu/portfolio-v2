@@ -36,6 +36,7 @@ import Skills from "./Skills";
 import Projects from "./Projects";
 import Settings from "./Settings";
 import Cli from "./Cli";
+import Contact from "./Contact";
 
 export default {
   name: "Portfolio",
@@ -54,7 +55,8 @@ export default {
     aboutMe: AboutMe,
     skills: Skills,
     projects: Projects,
-    Settings: Settings
+    Settings: Settings,
+    Contact: Contact
   },
   mounted() {},
   computed: {

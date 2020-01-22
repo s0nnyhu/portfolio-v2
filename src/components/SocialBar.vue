@@ -2,7 +2,7 @@
   <section>
     <ul class="social-icons">
       <li>
-        <a href="mailto:sonny.hu@toulouse.miage.fr" class="social-icon">
+        <a v-on:click="change" href="#" class="social-icon">
           <i class="fa fa-envelope"></i>
         </a>
       </li>
@@ -55,6 +55,9 @@ export default {
           ? "0" + today.getMinutes()
           : today.getMinutes());
       this.time = time;
+    },
+    change: function() {
+      this.$store.commit("changeSelectedMenu", "contact");
     }
   }
 };

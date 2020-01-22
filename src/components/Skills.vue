@@ -2,7 +2,7 @@
   <div class="skills">
     <div class="languages">
       <img src="../assets/icons/coding.svg" alt="Languages" title="Languages" />
-      <h1>Languages i speak</h1>
+      <h1>Languages I speak</h1>
       <ul>
         <li>PHP</li>
         <li>Java</li>
@@ -14,7 +14,7 @@
     </div>
     <div class="framework">
       <img src="../assets/icons/framework.svg" alt="Framework" title="Framework" />
-      <h1>Framework i know</h1>
+      <h1>Framework I know</h1>
       <ul>
         <li>Symfony 4</li>
         <li>Vue.js</li>
@@ -22,7 +22,7 @@
     </div>
     <div class="tools">
       <img src="../assets/icons/toolbox.svg" alt="Tools" title="Tools" />
-      <h1>Tools i use</h1>
+      <h1>Tools I use</h1>
       <ul>
         <li>Visual studio code</li>
         <li>Git</li>
