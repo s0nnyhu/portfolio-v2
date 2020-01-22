@@ -1,26 +1,201 @@
 <template>
-  <div class="contact">
-    <h1>Let's get in touch</h1>
-    <label for="name">Name</label>
-    <input type="text" name="name" id="name" placeholder="First name || Last name" />
-    <label for="name">Email</label>
-    <input type="text" name="email" id="email" placeholder="email@domain.com" />
-    <label for="name">Message</label>
-    <textarea name="message" id="message" cols="70" rows="10"></textarea>
-  </div>
+	<div class="contact">
+		<h1>Let's get in touch</h1>
+		<div
+			class="result"
+			v-bind:class="{
+				'result result-ok': error === false,
+				'result result-ko': error === true
+			}"
+		>
+			<p>{{ result }}</p>
+		</div>
+		<p>
+			<label>Name*</label>
+			<input
+				type="text"
+				name="name"
+				id="name"
+				placeholder="First name || Last name"
+				v-model="name"
+				required
+			/>
+		</p>
+
+		<p>
+			<label>E-mail*</label>
+			<input
+				type="email"
+				name="email"
+				id="email"
+				placeholder="john.doe@domain.com"
+				v-model="email"
+				required
+			/>
+		</p>
+
+		<p>
+			<label>Message*</label>
+			<textarea
+				name="message"
+				rows="5"
+				id="message"
+				placeholder="Message"
+				v-model="message"
+				required
+			></textarea>
+		</p>
+
+		<p>
+			<label>Security captcha: {{ cap1 }} plus {{ cap2 }}</label>
+			<input
+				type="text"
+				name="captcha"
+				id="captcha"
+				v-model="captcha"
+				required
+			/>
+		</p>
+
+		<p class="send-message">
+			<button v-on:click="sendMessage" type="submit">Send</button>
+		</p>
+	</div>
 </template>
 
 <script>
 export default {
-  name: "Contact"
+	name: 'Contact',
+	data() {
+		return {
+			name: '',
+			email: '',
+			message: '',
+			result: '',
+			sgMail: require('@sendgrid/mail'),
+			cap1: Math.floor(Math.random() * Math.floor(10)),
+			cap2: Math.floor(Math.random() * Math.floor(10)),
+			captcha: '',
+			error: false
+		};
+	},
+	methods: {
+		sendMessage: function() {
+			if (this.rescaptcha == this.captcha) {
+				if (this.title !== '' && this.email !== '' && this.message !== '') {
+					this.error = false;
+					this.sgMail.setApiKey(process.env.VUE_APP_SENGRID_API);
+					const msg = {
+						to: process.env.VUE_APP_ROOTEMAIL,
+						from: this.email,
+						subject: 'From s0nnyhu.github.io',
+						text: this.message,
+						html:
+							'<strong>User: ' +
+							this.name +
+							' / Message send from s0nnyhu.github.io</strong>'
+					};
+					this.sgMail
+						.send(msg)
+						.then(() => {
+							//Celebrate
+						})
+						.catch(error => {
+							//Log friendly error
+							console.error(error.toString());
+							this.error = true;
+							this.displayResultMessage('Error while sending message.');
+						});
+
+					this.displayResultMessage('Your message has been sent.');
+					this.cap1 = Math.floor(Math.random() * Math.floor(10));
+					this.cap2 = Math.floor(Math.random() * Math.floor(10));
+				}
+			} else {
+				this.error = true;
+				this.displayResultMessage('Error, check captcha.');
+			}
+		},
+		displayResultMessage: function(message) {
+			this.result = message;
+			setTimeout(() => {
+				this.result = '';
+			}, 10000);
+		}
+	},
+	computed: {
+		rescaptcha: function() {
+			return this.cap1 + this.cap2;
+		}
+	}
 };
 </script>
 
 <style>
-label {
-  display: block;
+.result {
+	width: 50%;
+	text-align: center;
+	display: inline-block;
+}
+.result-ok {
+	background-color: #dff0d8;
+}
+.result-ko {
+	background-color: #f2dede;
 }
 .contact {
-  margin-bottom: 150px;
+	display: block;
+}
+
+.contact label {
+	display: block;
+}
+
+.contact p {
+	margin: 0;
+}
+
+.contact button {
+	width: 10%;
+	padding: 0.3em;
+	border: solid 1px #0a0e1f;
+}
+#captcha {
+	width: 10% !important;
+	padding: 0.1em;
+	margin-bottom: 10px;
+}
+.contact input,
+.contact textarea {
+	font: 0.875em/1.6 'Inconsolata', monospace;
+	color: #181818;
+	width: 30%;
+	padding: 0.3em;
+	border: solid 1px #0a0e1f;
+}
+
+.contact textarea {
+	resize: none;
+}
+.contact button:hover,
+.contact button:focus {
+	cursor: pointer;
+	outline: 0;
+	transition: background-color 2s ease-out;
+}
+
+@media only screen and (max-width: 600px) {
+	.contact button {
+		width: 60%;
+		border: solid 1px #0a0e1f;
+	}
+	.contact input,
+	.contact textarea {
+		width: 60%;
+		border: solid 1px #0a0e1f;
+	}
+}
+.contact {
+	margin-bottom: 150px;
 }
 </style>
