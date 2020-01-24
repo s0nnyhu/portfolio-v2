@@ -15,7 +15,7 @@ export default {
   data() {
     return {
       status: "hidden",
-      aboutMeText: `<p> Hi, my name is <strong>Sonny</strong> </p> <p> I'm a junior developer and I <strong>design</strong>, <strong>build</strong> &amp; <strong>experiment</strong> on various digital applications </p> <p> I'm currently studying for a master’s degree. I'm learning everyday to improve, continue challenging myself, and do interesting things that matter. </p> <p> Fueled by high energy levels and boundless enthusiasm, I’m easily inspired and more than willing to follow my fascinations wherever they take me. </p> <p> Feel free to take look at my latest personal projects and do not hesitate to get in touch </p> <p>Portfolio built using VueJs.</p>`
+      aboutMeText: `<p> Hi, my name is <strong>Sonny</strong> </p> <p> I'm a junior developer and I <strong>design</strong>, <strong>build</strong> &amp; <strong>experiment</strong> on various digital applications </p> <p> I'm learning everyday to improve, continue challenging myself, and do interesting things that matter. </p> <p> Fueled by high energy levels and boundless enthusiasm, I’m easily inspired and more than willing to follow my fascinations wherever they take me. </p> <p> Feel free to take look at my latest personal projects and do not hesitate to get in touch </p>`
     };
   },
   components: {

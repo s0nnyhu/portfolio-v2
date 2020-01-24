@@ -17,7 +17,7 @@
         <Cli user-prompt="[root@s0nnyhu.github.io ~]#"></Cli>
       </div>
       <!--End Cli-->
-      <div class="data">
+      <div class="data" v-bind:class="{ 'theme-night-text': theme==='night'}">
         <transition name="component-fade" mode="out-in">
           <component v-bind:is="state"></component>
         </transition>
@@ -100,6 +100,10 @@ export default {
   background-repeat: no-repeat;
   background-size: cover;
   /*background-image: url(https://cathydolle.github.io/assets/settings/wallpaper/giyuu_tomioka.svg);*/
+}
+
+.theme-night-text {
+  color: grey !important;
 }
 
 /**Menu CSS - Position */
