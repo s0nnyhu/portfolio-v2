@@ -76,18 +76,22 @@ export default {
   methods: {
     sendMessage: function() {
       if (this.rescaptcha == this.captcha) {
-        if (this.title !== "" && this.email !== "" && this.message !== "") {
+        if (
+          this.contactData.name !== "" &&
+          this.contactData.email !== "" &&
+          this.contactData.message !== ""
+        ) {
           this.error = false;
           const msg = {
             to: process.env.VUE_APP_ROOTEMAIL,
-            from: this.email,
+            from: this.contactData.email,
             subject: "From s0nnyhu.github.io",
-            text: this.message,
+            text: this.contactData.message,
             html:
               "<p>" +
-              this.message +
+              this.contactData.message +
               "</p> <strong>User: " +
-              this.name +
+              this.contactData.name +
               " / Message send from s0nnyhu.github.io</strong>"
           };
 
