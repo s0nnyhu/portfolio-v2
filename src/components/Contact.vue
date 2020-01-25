@@ -48,15 +48,16 @@
         required
       ></textarea>
     </p>
+    <div class="security">
+      <p>
+        <label>Security captcha: {{ cap1 }} plus {{ cap2 }}</label>
+        <input type="text" name="captcha" id="captcha" v-model="captcha" required />
+      </p>
 
-    <p>
-      <label>Security captcha: {{ cap1 }} plus {{ cap2 }}</label>
-      <input type="text" name="captcha" id="captcha" v-model="captcha" required />
-    </p>
-
-    <p class="send-message">
-      <button v-on:click="sendMessage" type="submit">Send</button>
-    </p>
+      <p class="send-message">
+        <button v-on:click="sendMessage" type="submit">Send</button>
+      </p>
+    </div>
   </div>
 </template>
 
@@ -201,6 +202,9 @@ export default {
 }
 .contact {
   margin-bottom: 150px;
+}
+
+.security {
   position: relative;
   z-index: 100;
 }

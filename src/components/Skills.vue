@@ -25,8 +25,10 @@
       <h1>Tools I use</h1>
       <ul>
         <li>Visual studio code</li>
+        <li>Familiar with Netbeans / IntelliJ</li>
         <li>Git</li>
         <li>Github</li>
+        <li></li>
       </ul>
     </div>
   </div>

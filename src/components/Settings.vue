@@ -27,9 +27,18 @@
         <label for="night">Night</label>
       </p>
     </div>
-    <div class="background">
-      <h1>Change background wallpaper</h1>
+    <div class="credit">
+      <h1>Credits</h1>
       <hr class="custom-separator" />
+      <br />
+      <div>
+        Icons on my portfolio are made by
+        <a
+          href="https://www.flaticon.com/authors/freepik"
+          title="Freepik"
+        >Freepik</a> from
+        <a href="https://www.flaticon.com/" title="Flaticon">Flaticon</a>
+      </div>
     </div>
   </div>
 </template>
@@ -49,7 +58,8 @@ export default {
         window.localStorage.removeItem("settingsSh");
         window.localStorage.setItem("settingsSh", JSON.stringify(settingsSh));
       }
-    }
+    },
+    switchView: function() {}
   },
   computed: {
     ...mapGetters({
@@ -60,6 +70,10 @@ export default {
 </script>
 
 <style scoped>
+.credit a {
+  color: black;
+}
+
 hr.custom-separator {
   border: 0;
   height: 1px;

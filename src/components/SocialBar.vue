@@ -1,11 +1,18 @@
 <template>
   <section>
     <ul class="social-icons">
+      <li class="initials">
+        <div class="gradient-border" id="box">
+          <p>{{initials}}</p>
+        </div>
+      </li>
+      <!--STANDBY PROJECT
       <li>
         <a v-on:click="change" href="#" class="social-icon">
           <i class="fa fa-envelope"></i>
         </a>
       </li>
+      -->
       <li>
         <a href="https://twitter.com/hu_sonny" target="_blank" class="social-icon">
           <i class="fa fa-twitter"></i>
@@ -39,7 +46,8 @@ export default {
   name: "SocialBar",
   data() {
     return {
-      time: ""
+      time: "",
+      initials: ""
     };
   },
   created() {
@@ -55,6 +63,7 @@ export default {
           ? "0" + today.getMinutes()
           : today.getMinutes());
       this.time = time;
+      this.initials = "SH";
     },
     change: function() {
       this.$store.commit("changeSelectedMenu", "contact");
@@ -63,8 +72,47 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+@import url(//db.onlinewebfonts.com/c/6cb4254d224fa60f15c496c4720b5c9a?family=Ninja+Naruto);
 @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css);
+
+.gradient-border {
+  --borderWidth: 1px;
+  position: relative;
+  border-radius: var(--borderWidth);
+}
+.gradient-border:after {
+  content: "";
+  position: absolute;
+  top: calc(-1 * var(--borderWidth));
+  left: calc(-1 * var(--borderWidth));
+  height: calc(100% + var(--borderWidth) * 2);
+  width: calc(100% + var(--borderWidth) * 2);
+  background: linear-gradient(
+    60deg,
+    #a166ab,
+    #5073b8,
+    #1098ad,
+    #07b39b,
+    #6fba82
+  );
+  border-radius: calc(2 * var(--borderWidth));
+  z-index: -1;
+  animation: animatedgradient 3s ease alternate infinite;
+  background-size: 300% 300%;
+}
+
+@keyframes animatedgradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
 ul {
   padding: 0;
   list-style: none;
@@ -98,6 +146,16 @@ ul {
   -webkit-transition: 0.2s;
   transition: 0.2s;
   background-color: #322f30;
+}
+
+.initials {
+  float: left;
+}
+.initials p {
+  padding: 5px 14px;
+  color: white;
+  font-size: 15px;
+  font-family: "Ninja Naruto";
 }
 .fa-envelope:hover {
   background-color: #3d5b99;

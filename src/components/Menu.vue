@@ -31,7 +31,7 @@
       <span>Skills</span>
     </label>
 
-    <!-- Item 3 -->
+    <!-- Item 3 STANDBY PROJECT
     <input
       @input="changed"
       type="radio"
@@ -44,6 +44,22 @@
     <label for="slide-item-3">
       <img src="../assets/icons/folder.svg" alt="My Projects" title="My Projects" />
       <span>Projects</span>
+    </label>
+    -->
+
+    <!-- Item 3 -->
+    <input
+      @input="changed"
+      type="radio"
+      name="slideItem"
+      value="contact"
+      id="slide-item-3"
+      class="slide-toggle"
+      v-model="pickedMenu"
+    />
+    <label for="slide-item-3">
+      <img src="../assets/icons/contact.svg" alt="Contact" title="Contact" />
+      <span>Contact</span>
     </label>
 
     <!-- Item 4 -->
@@ -183,5 +199,17 @@ export default {
 }
 img {
   width: 70px;
+}
+
+@media only screen and (max-width: 600px) {
+  .slidemenu {
+    background: #435a6b;
+    padding-top: 5px;
+    opacity: 0.9;
+    margin: 0px auto;
+  }
+  .slidemenu span {
+    color: rgba(31, 29, 29, 0.959);
+  }
 }
 </style>
