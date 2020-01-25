@@ -204,8 +204,4 @@ export default {
   margin-bottom: 150px;
 }
 
-.security {
-  position: relative;
-  z-index: 100;
-}
 </style>

@@ -73,7 +73,25 @@ export default {
 </script>
 
 <style lang="scss">
-@import url(//db.onlinewebfonts.com/c/6cb4254d224fa60f15c496c4720b5c9a?family=Ninja+Naruto);
+@font-face {
+  font-family: "Ninja Naruto";
+  src: url("../assets/css/fonts/6cb4254d224fa60f15c496c4720b5c9a.eot"); /* IE9*/
+  src: url("../assets/css/fonts/6cb4254d224fa60f15c496c4720b5c9a.eot")
+      format("embedded-opentype"),
+    /* IE6-IE8 */
+      url("../assets/css/fonts/6cb4254d224fa60f15c496c4720b5c9a.woff2")
+      format("woff2"),
+    /* chrome firefox */
+      url("../assets/css/fonts/6cb4254d224fa60f15c496c4720b5c9a.woff")
+      format("woff"),
+    /* chrome firefox */
+      url("../assets/css/fonts/6cb4254d224fa60f15c496c4720b5c9a.ttf")
+      format("truetype"),
+    /* chrome firefox opera Safari, Android, iOS 4.2+*/
+      url("../assets/css/fonts/6cb4254d224fa60f15c496c4720b5c9a.svg")
+      format("svg"); /* iOS 4.1- */
+}
+
 @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css);
 
 .gradient-border {
