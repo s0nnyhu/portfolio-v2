@@ -106,6 +106,10 @@ export default {
   color: grey !important;
 }
 
+.theme-night-text a {
+  color: grey !important;
+}
+
 /**Menu CSS - Position */
 .menu {
   /*background: rgba(1, 1, 1, 0.2);*/

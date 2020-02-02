@@ -15,7 +15,7 @@ export default {
   data() {
     return {
       status: "hidden",
-      aboutMeText: `<p> Hi, my name is <strong>Sonny</strong> </p> <p> I'm a junior developer and I <strong>design</strong>, <strong>build</strong> &amp; <strong>experiment</strong> on various digital applications. </p> <p> I'm learning everyday to improve, continue challenging myself, and do interesting things that matter. </p> <p> I’m easily inspired and more than willing to follow my fascinations wherever they take me. </p> <br /><p> Feel free to take look at my linkedin and github and do not hesitate to get in touch. </p>`
+      aboutMeText: `<p> Hi, my name is <strong>Sonny</strong> </p> <p> I'm a junior developer and I <strong>design</strong>, <strong>build</strong> &amp; <strong>experiment</strong> on various digital applications. </p> <p> I'm improving everyday by challenging myself with things that matter to me. </p> <p> I’m easily inspired and more than willing to follow my fascinations wherever they take me. </p> <br /><p> Take a look at my linkedin and github and feel free to get in touch. </p>`
     };
   },
   components: {

@@ -95,7 +95,7 @@ export default {
 @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css);
 
 .gradient-border {
-  --borderWidth: 1px;
+  --borderWidth: 2px;
   position: relative;
   border-radius: var(--borderWidth);
 }

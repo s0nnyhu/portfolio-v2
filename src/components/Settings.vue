@@ -54,8 +54,10 @@ export default {
         theme: event.target.value
       };
 
-      if (window.localStorage.getItem("settingsSh")) {
+      if (window.localStorage.getItem("settingsSh") !== null) {
         window.localStorage.removeItem("settingsSh");
+        window.localStorage.setItem("settingsSh", JSON.stringify(settingsSh));
+      } else {
         window.localStorage.setItem("settingsSh", JSON.stringify(settingsSh));
       }
     },
