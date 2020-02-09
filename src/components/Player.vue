@@ -117,6 +117,29 @@
               />
             </svg>
           </button>
+          <button class="ap__controls ap__controls--shuffle">
+            <svg
+              version="1.1"
+              id="IconsRepoEditor"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              x="0px"
+              y="0px"
+              viewBox="0 0 230.055 230.055"
+              style="enable-background:new 0 0 230.055 230.055;"
+              xml:space="preserve"
+              width="24"
+              height="24"
+              fill="#000000"
+              stroke="#000000"
+              stroke-width="0"
+            >
+              <g id="IconsRepo_bgCarrier" />
+              <path
+                d="M199.419,124.497c-3.516-3.515-9.213-3.515-12.729,0c-3.515,3.515-3.515,9.213,0,12.728l12.637,12.636h-8.406 c-8.177,0-16.151-2.871-22.453-8.083l-32.346-26.751l32.345-26.751c6.303-5.212,14.277-8.083,22.454-8.083h8.406L186.69,92.83 c-3.515,3.515-3.515,9.213,0,12.728c1.758,1.757,4.061,2.636,6.364,2.636s4.606-0.879,6.364-2.636l28-28 c3.515-3.515,3.515-9.213,0-12.728l-28-28c-3.516-3.515-9.213-3.515-12.729,0c-3.515,3.515-3.515,9.213,0,12.728l12.637,12.636 h-8.406c-12.354,0-24.403,4.337-33.926,12.211L122,103.348L82.564,70.733c-6.658-5.507-15.084-8.54-23.724-8.54H9 c-4.971,0-9,4.029-9,9s4.029,9,9,9h49.841c4.462,0,8.813,1.566,12.252,4.411l36.786,30.423L71.094,145.45 c-3.439,2.844-7.791,4.411-12.253,4.411H9c-4.971,0-9,4.029-9,9s4.029,9,9,9h49.841c8.64,0,17.065-3.033,23.725-8.54L122,126.707 l34.996,28.943c9.521,7.875,21.57,12.211,33.925,12.211h8.406l-12.637,12.636c-3.515,3.515-3.515,9.213,0,12.728 c1.758,1.757,4.061,2.636,6.364,2.636s4.606-0.879,6.364-2.636l28-28c3.515-3.515,3.515-9.213,0-12.728L199.419,124.497z"
+              />
+            </svg>
+          </button>
           <button class="ap__controls ap__controls--playlist">
             <svg
               version="1.1"
@@ -158,6 +181,7 @@ export default {
         nextBtn,
         plBtn,
         repeatBtn,
+        shuffleBtn,
         volumeBtn,
         progressBar,
         preloadBar,
@@ -170,6 +194,7 @@ export default {
         volumeBar,
         volumeLength,
         repeating = false,
+        shuffleing = false,
         seeking = false,
         seekingVol = false,
         rightClick = false,
@@ -221,6 +246,7 @@ export default {
         prevBtn = player.querySelector(".ap__controls--prev");
         nextBtn = player.querySelector(".ap__controls--next");
         repeatBtn = player.querySelector(".ap__controls--repeat");
+        shuffleBtn = player.querySelector(".ap__controls--shuffle");
         volumeBtn = player.querySelector(".volume-btn");
         plBtn = player.querySelector(".ap__controls--playlist");
         curTime = player.querySelector(".track__time--current");
@@ -235,6 +261,7 @@ export default {
         playBtn.addEventListener("click", playToggle, false);
         volumeBtn.addEventListener("click", volumeToggle, false);
         repeatBtn.addEventListener("click", repeatToggle, false);
+        shuffleBtn.addEventListener("click", shuffleToggle, false);
 
         progressBar
           .closest(".progress-container")
@@ -293,10 +320,10 @@ export default {
           playBtn.classList.add("is-playing");
           playSvgPath.setAttribute("d", playSvg.getAttribute("data-pause"));
           plLi[index].classList.add("pl-list--current");
-          notify(playList[index].title, {
-            icon: playList[index].icon,
-            body: "Now playing"
-          });
+          // notify(playList[index].title, {
+          //   icon: playList[index].icon,
+          //   body: "Now playing"
+          // });
         }
       }
 
@@ -491,11 +518,11 @@ export default {
         audio.play();
 
         // Show notification
-        notify(playList[index].title, {
-          icon: playList[index].icon,
-          body: "Now playing",
-          tag: "music-player"
-        });
+        // notify(playList[index].title, {
+        //   icon: playList[index].icon,
+        //   body: "Now playing",
+        //   tag: "music-player"
+        // });
 
         // Toggle play button
         playBtn.classList.add("is-playing");
@@ -539,10 +566,10 @@ export default {
         }
         if (audio.paused) {
           if (audio.currentTime === 0) {
-            notify(playList[index].title, {
-              icon: playList[index].icon,
-              body: "Now playing"
-            });
+            // notify(playList[index].title, {
+            //   icon: playList[index].icon,
+            //   body: "Now playing"
+            // });
           }
           changeDocumentTitle(playList[index].title);
 
@@ -577,12 +604,32 @@ export default {
       }
 
       function repeatToggle() {
+        //removing shuffle
+        if (shuffleBtn.classList.contains("is-active")) {
+          shuffleing = false;
+          shuffleBtn.classList.remove("is-active");
+        }
         if (repeatBtn.classList.contains("is-active")) {
           repeating = false;
           repeatBtn.classList.remove("is-active");
         } else {
           repeating = true;
           repeatBtn.classList.add("is-active");
+        }
+      }
+
+      function shuffleToggle() {
+        //removing repeat
+        if (repeatBtn.classList.contains("is-active")) {
+          repeating = false;
+          repeatBtn.classList.remove("is-active");
+        }
+        if (shuffleBtn.classList.contains("is-active")) {
+          shuffleing = false;
+          shuffleBtn.classList.remove("is-active");
+        } else {
+          shuffleing = true;
+          shuffleBtn.classList.add("is-active");
         }
       }
 
@@ -618,7 +665,6 @@ export default {
 
       /**
        * TODO shuffle
-      
       function shuffle() {
         if (shuffle) {
           index = Math.round(Math.random() * playList.length);
@@ -626,16 +672,20 @@ export default {
       }
     */
       function doEnd() {
-        if (index === playList.length - 1) {
-          if (!repeating) {
-            audio.pause();
-            plActive();
-            playBtn.classList.remove("is-playing");
-            playSvgPath.setAttribute("d", playSvg.getAttribute("data-play"));
-            return;
-          } else {
-            play(0);
-          }
+        console.log(index, playList.length - 1);
+        if (repeating) {
+          audio.pause();
+          plActive();
+          playBtn.classList.remove("is-playing");
+          playSvgPath.setAttribute("d", playSvg.getAttribute("data-play"));
+          play(index);
+        } else if (shuffleing) {
+          index = Math.round(Math.random() * playList.length);
+          audio.pause();
+          plActive();
+          playBtn.classList.remove("is-playing");
+          playSvgPath.setAttribute("d", playSvg.getAttribute("data-play"));
+          play(index);
         } else {
           play(index + 1);
         }
@@ -659,8 +709,8 @@ export default {
             var offset = el.offset().top + el.offsetHeight - window.pageYOffset;
             value = Math.round(offset - evt.clientY);
           }
-          if (value > 100) value = this.wheelVolumeValue = 100;
-          if (value < 0) value = this.wheelVolumeValue = 0;
+          if (value > 100) value = 100;
+          if (value < 0) value = 0;
           volumeBar.style.height = value + "%";
           return value;
         }
@@ -712,21 +762,21 @@ export default {
         }
       }
 
-      function notify(title, attr) {
-        if (!settings.notification) {
-          return;
-        }
-        if (window.Notification === undefined) {
-          return;
-        }
-        attr.tag = "AP music player";
-        window.Notification.requestPermission(function(access) {
-          if (access === "granted") {
-            var notice = new Notification(title.substr(0, 110), attr);
-            setTimeout(notice.close.bind(notice), 5000);
-          }
-        });
-      }
+      // function notify(title, attr) {
+      //   if (!settings.notification) {
+      //     return;
+      //   }
+      //   if (window.Notification === undefined) {
+      //     return;
+      //   }
+      //   attr.tag = "AP music player";
+      //   window.Notification.requestPermission(function(access) {
+      //     if (access === "granted") {
+      //       var notice = new Notification(title.substr(0, 110), attr);
+      //       setTimeout(notice.close.bind(notice), 5000);
+      //     }
+      //   });
+      // }
 
       /* Destroy method. Clear All */
       function destroy() {
@@ -902,8 +952,33 @@ export default {
           title: "Florian Bur - My World",
           file:
             "https://docs.google.com/uc?export=download&id=1qHRC3SGtZV_F_-5QOfNtqcbw8uUwM35w"
+        },
+        {
+          icon: iconImage,
+          title: "Eminem - Rap God",
+          file:
+            "https://docs.google.com/uc?export=download&id=1a1_SsyfWOcSHxn0HWTHYp-Td1CKSlxOl"
         }
       ]
+    });
+
+    var playerElem = document.querySelector(".ap");
+    var playlistEm = document.querySelector(".pl-ul");
+
+    setTimeout(function() {
+      playerElem.style.opacity = "0";
+    }, 3000);
+
+    playerElem.addEventListener("mouseover", function() {
+      playerElem.style.opacity = "0.4";
+    });
+
+    playerElem.addEventListener("mouseout", function() {
+      playerElem.style.opacity = "0";
+    });
+
+    playlistEm.addEventListener("mouseover", function() {
+      playerElem.style.opacity = "0.4";
     });
   }
 };
@@ -927,8 +1002,13 @@ export default {
   background: #f2f2f2;
   box-shadow: 0 -1px 10px rgba(0, 0, 0, 0.1);
   z-index: 99999;
-  opacity: 0.3;
+  opacity: 0.4;
+  transition: 1.8s;
 }
+
+/* .ap:hover {
+  opacity: 0.4 !important;
+} */
 
 .ap__inner {
   display: flex;
