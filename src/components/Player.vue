@@ -947,18 +947,24 @@ export default {
 
     AP.init({
       playList: [
+        // {
+        //   icon: iconImage,
+        //   title: "Florian Bur - My World",
+        //   file:
+        //     "https://docs.google.com/uc?export=download&id=1qHRC3SGtZV_F_-5QOfNtqcbw8uUwM35w"
+        // },
         {
           icon: iconImage,
-          title: "Florian Bur - My World",
+          title: "How are we going to the moon - Lava Sound Studios",
           file:
-            "https://docs.google.com/uc?export=download&id=1qHRC3SGtZV_F_-5QOfNtqcbw8uUwM35w"
-        },
-        {
-          icon: iconImage,
-          title: "Eminem - Rap God",
-          file:
-            "https://docs.google.com/uc?export=download&id=1a1_SsyfWOcSHxn0HWTHYp-Td1CKSlxOl"
+            "https://docs.google.com/uc?export=download&id=1xmODZDxIynXuxWAOm7g9miXBVstnu9SS"
         }
+        // {
+        //   icon: iconImage,
+        //   title: "Eminem - Rap God",
+        //   file:
+        //     "https://docs.google.com/uc?export=download&id=1a1_SsyfWOcSHxn0HWTHYp-Td1CKSlxOl"
+        // }
       ]
     });
 
