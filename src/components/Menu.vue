@@ -94,7 +94,7 @@ export default {
     };
   },
   methods: {
-    changed: function(event) {
+    changed: function (event) {
       this.$store.commit("changeSelectedMenu", event.target.value);
       this.$store.commit("updateWasRenderedAboutMe", true);
     }

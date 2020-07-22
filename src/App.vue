@@ -10,6 +10,7 @@
 <script>
 import Portfolio from "./components/Portfolio.vue";
 import Universe from "./components/Universe.vue";
+import Trololo from "./components/Trololo.vue";
 
 export default {
   name: "app",
@@ -19,18 +20,46 @@ export default {
     };
   },
   methods: {
-    updateview: function() {
-      this.view = this.view === "portfolio" ? "universe" : "portfolio";
+    updateview: function (sView) {
+      switch (this.view) {
+        case "portfolio":
+          this.view = sView;
+          break;
+        case "universe":
+          console.log(sView);
+          if (sView == "universe") {
+            this.view = "portfolio";
+          }
+          if (sView == "trololo") {
+            this.view = "trololo";
+          }
+          break;
+        case "trololo":
+          console.log(sView);
+          if (sView == "universe") {
+            this.view = "universe";
+          }
+          if (sView == "trololo") {
+            this.view = "portfolio";
+          }
+          break;
+        default:
+          break;
+      }
     }
   },
   components: {
     portfolio: Portfolio,
-    universe: Universe
+    universe: Universe,
+    trololo: Trololo
   },
   mounted() {
     window.addEventListener("keydown", e => {
       if (e.altKey && e.key === "s") {
-        this.updateview();
+        this.updateview("universe");
+      }
+      if (e.altKey && e.key === "t") {
+        this.updateview("trololo");
       }
     });
   }

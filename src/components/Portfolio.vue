@@ -58,7 +58,7 @@ export default {
     Settings: Settings,
     Contact: Contact
   },
-  mounted() {},
+  mounted() { },
   computed: {
     ...mapGetters({
       state: "pickedMenu",
@@ -78,13 +78,13 @@ export default {
 /**Portfolio - Background */
 #portfolio {
   overflow: hidden;
-
   height: 100%; /*ici*/
   width: 100%;
   position: absolute;
   overflow-y: auto;
   max-width: 100% !important;
 }
+
 .theme-night {
   background: -o-linear-gradient(top, #000, #041c2b);
   background: -ms-linear-gradient(top, #000, #041c2b);

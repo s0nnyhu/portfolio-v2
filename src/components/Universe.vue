@@ -251,7 +251,7 @@ export default {
     function createUniverse() {
       universe = canva.getContext("2d");
 
-      for (var i = 0; i < starCount; i++) {
+      for (var i = 0;i < starCount;i++) {
         stars[i] = new Star();
         stars[i].reset();
       }
@@ -264,7 +264,7 @@ export default {
 
       var starsLength = stars.length;
 
-      for (var i = 0; i < starsLength; i++) {
+      for (var i = 0;i < starsLength;i++) {
         var star = stars[i];
         star.move();
         star.fadeIn();
@@ -276,7 +276,7 @@ export default {
     }
 
     function Star() {
-      this.reset = function() {
+      this.reset = function () {
         this.giant = getProbability(3);
         this.comet = this.giant || first ? false : getProbability(10);
         this.x = getRandInterval(0, width - 10);
@@ -299,14 +299,14 @@ export default {
         this.do = getRandInterval(0.0005, 0.002) + (this.comet + 1 - 1) * 0.001;
       };
 
-      this.fadeIn = function() {
+      this.fadeIn = function () {
         if (this.fadingIn) {
           this.fadingIn = this.opacity > this.opacityTresh ? false : true;
           this.opacity += this.do;
         }
       };
 
-      this.fadeOut = function() {
+      this.fadeOut = function () {
         if (this.fadingOut) {
           this.fadingOut = this.opacity < 0 ? false : true;
           this.opacity -= this.do / 2;
@@ -317,7 +317,7 @@ export default {
         }
       };
 
-      this.draw = function() {
+      this.draw = function () {
         universe.beginPath();
 
         if (this.giant) {
@@ -328,7 +328,7 @@ export default {
           universe.arc(this.x, this.y, 1.5, 0, 2 * Math.PI, false);
 
           //comet tail
-          for (var i = 0; i < 30; i++) {
+          for (var i = 0;i < 30;i++) {
             universe.fillStyle =
               "rgba(" +
               cometColor +
@@ -352,7 +352,7 @@ export default {
         universe.fill();
       };
 
-      this.move = function() {
+      this.move = function () {
         this.x += this.dx;
         this.y += this.dy;
         if (this.fadingOut === false) {
@@ -363,8 +363,8 @@ export default {
         }
       };
 
-      (function() {
-        setTimeout(function() {
+      (function () {
+        setTimeout(function () {
           first = false;
         }, 50);
       })();

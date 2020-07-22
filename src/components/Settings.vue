@@ -48,7 +48,7 @@ import { mapGetters } from "vuex";
 export default {
   name: "Settings",
   methods: {
-    changeTheme: function(event) {
+    changeTheme: function (event) {
       this.$store.commit("changeTheme", event.target.value);
       const settingsSh = {
         theme: event.target.value
@@ -61,7 +61,7 @@ export default {
         window.localStorage.setItem("settingsSh", JSON.stringify(settingsSh));
       }
     },
-    switchView: function() {}
+    switchView: function () { }
   },
   computed: {
     ...mapGetters({

@@ -13,11 +13,11 @@
         </a>
       </li>
       -->
-      <li>
+      <!-- <li>
         <a href="https://twitter.com/hu_sonny" target="_blank" class="social-icon">
           <i class="fa fa-twitter"></i>
         </a>
-      </li>
+      </li>-->
       <li>
         <a
           href="https://www.linkedin.com/in/sonny-hu-16001384/"
@@ -54,7 +54,7 @@ export default {
     setInterval(this.getNow, 1000);
   },
   methods: {
-    getNow: function() {
+    getNow: function () {
       const today = new Date();
       const time =
         today.getHours() +
@@ -65,7 +65,7 @@ export default {
       this.time = time;
       this.initials = "SH";
     },
-    change: function() {
+    change: function () {
       this.$store.commit("changeSelectedMenu", "contact");
     }
   }

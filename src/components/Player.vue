@@ -170,7 +170,7 @@ export default {
     };
   },
   mounted() {
-    var AudioPlayer = (function() {
+    var AudioPlayer = (function () {
       // Player vars!
       var docTitle = document.title,
         player = document.getElementById("ap"),
@@ -386,7 +386,7 @@ export default {
         var count = playList.length;
         var html = [];
         playList.push.apply(playList, addList);
-        addList.forEach(function(item) {
+        addList.forEach(function (item) {
           html.push(
             tplList.replace("{count}", count++).replace("{title}", item.title)
           );
@@ -408,7 +408,7 @@ export default {
       function renderPL() {
         var html = [];
 
-        playList.forEach(function(item, i) {
+        playList.forEach(function (item, i) {
           html.push(
             tplList.replace("{count}", i).replace("{title}", item.title)
           );
@@ -457,7 +457,7 @@ export default {
 
             plLi = pl.querySelectorAll("li");
 
-            [].forEach.call(plLi, function(el, i) {
+            [].forEach.call(plLi, function (el, i) {
               el.setAttribute("data-track", i);
             });
 
@@ -492,7 +492,7 @@ export default {
           return;
         }
         var current = index;
-        for (var i = 0, len = plLi.length; len > i; i++) {
+        for (var i = 0, len = plLi.length;len > i;i++) {
           plLi[i].classList.remove("pl-list--current");
         }
         plLi[current].classList.add("pl-list--current");
@@ -696,7 +696,7 @@ export default {
         if (dir === "horizontal") {
           value = Math.round(
             ((evt.clientX - el.offset().left + window.pageXOffset) * 100) /
-              el.parentNode.offsetWidth
+            el.parentNode.offsetWidth
           );
           el.style.width = value + "%";
           return value;
@@ -876,7 +876,7 @@ export default {
         return element;
       }
 
-      Element.prototype.offset = function() {
+      Element.prototype.offset = function () {
         var el = this.getBoundingClientRect(),
           scrollLeft =
             window.pageXOffset || document.documentElement.scrollLeft,
@@ -888,7 +888,7 @@ export default {
         };
       };
 
-      Element.prototype.css = function(attr) {
+      Element.prototype.css = function (attr) {
         if (typeof attr === "string") {
           return getComputedStyle(this, "")[attr];
         } else if (typeof attr === "object") {
@@ -902,13 +902,13 @@ export default {
 
       // matches polyfill
       window.Element &&
-        (function(ElementPrototype) {
+        (function (ElementPrototype) {
           ElementPrototype.matches =
             ElementPrototype.matches ||
             ElementPrototype.matchesSelector ||
             ElementPrototype.webkitMatchesSelector ||
             ElementPrototype.msMatchesSelector ||
-            function(selector) {
+            function (selector) {
               var node = this,
                 nodes = (node.parentNode || node.document).querySelectorAll(
                   selector
@@ -921,10 +921,10 @@ export default {
 
       // closest polyfill
       window.Element &&
-        (function(ElementPrototype) {
+        (function (ElementPrototype) {
           ElementPrototype.closest =
             ElementPrototype.closest ||
-            function(selector) {
+            function (selector) {
               var el = this;
               while (el.matches && !el.matches(selector)) el = el.parentNode;
               return el.matches ? el : null;
@@ -947,43 +947,49 @@ export default {
 
     AP.init({
       playList: [
-        // {
-        //   icon: iconImage,
-        //   title: "Florian Bur - My World",
-        //   file:
-        //     "https://docs.google.com/uc?export=download&id=1qHRC3SGtZV_F_-5QOfNtqcbw8uUwM35w"
-        // },
+        {
+          icon: iconImage,
+          title: "Florian Bur - My World",
+          file:
+            "https://docs.google.com/uc?export=open&id=1qHRC3SGtZV_F_-5QOfNtqcbw8uUwM35w"
+        },
         {
           icon: iconImage,
           title: "How are we going to the moon - Lava Sound Studios",
           file:
-            "https://docs.google.com/uc?export=download&id=1xmODZDxIynXuxWAOm7g9miXBVstnu9SS"
+            "https://docs.google.com/uc?export=open&id=1xmODZDxIynXuxWAOm7g9miXBVstnu9SS"
+        },
+        {
+          icon: iconImage,
+          title: "Platinum Disco - Piano",
+          file:
+            "https://docs.google.com/uc?export=open&id=1Qoxd-YeCW8vjgjl3dhjvuMWiicH57J2m"
+        },
+        {
+          icon: iconImage,
+          title: "Hanezeve Caradhina - Piano",
+          file:
+            "https://docs.google.com/uc?export=open&id=13d0ePvRHarYdu7mOpuZDiv3OOZuKbGmI"
         }
-        // {
-        //   icon: iconImage,
-        //   title: "Eminem - Rap God",
-        //   file:
-        //     "https://docs.google.com/uc?export=download&id=1a1_SsyfWOcSHxn0HWTHYp-Td1CKSlxOl"
-        // }
       ]
     });
 
     var playerElem = document.querySelector(".ap");
     var playlistEm = document.querySelector(".pl-ul");
 
-    setTimeout(function() {
+    setTimeout(function () {
       playerElem.style.opacity = "0";
     }, 3000);
 
-    playerElem.addEventListener("mouseover", function() {
+    playerElem.addEventListener("mouseover", function () {
       playerElem.style.opacity = "0.4";
     });
 
-    playerElem.addEventListener("mouseout", function() {
+    playerElem.addEventListener("mouseout", function () {
       playerElem.style.opacity = "0";
     });
 
-    playlistEm.addEventListener("mouseover", function() {
+    playlistEm.addEventListener("mouseover", function () {
       playerElem.style.opacity = "0.4";
     });
   }

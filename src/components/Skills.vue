@@ -18,6 +18,7 @@
       <ul>
         <li>Symfony 4</li>
         <li>Vue.js</li>
+        <li>React</li>
       </ul>
     </div>
     <div class="tools">
@@ -59,5 +60,8 @@ export default {
     display: block;
     width: 100%;
   }
+}
+.skills li {
+  font-size: 1.2rem;
 }
 </style>

@@ -7,7 +7,7 @@ export const store = new Vuex.Store({
     state: {
         pickedMenu: 'aboutMe',
         wasAboutMeRendered: false,
-        pickedTheme: JSON.parse(window.localStorage.getItem('settingsSh')) != null ? JSON.parse(window.localStorage.getItem('settingsSh')).theme : 'normal',
+        pickedTheme: JSON.parse(window.localStorage.getItem('settingsSh')) != null ? JSON.parse(window.localStorage.getItem('settingsSh')).theme : 'night',
         contact: {
             name: '',
             email: '',
@@ -15,16 +15,16 @@ export const store = new Vuex.Store({
         }
     },
     mutations: {
-        changeTheme(state,pickedTheme) {
+        changeTheme(state, pickedTheme) {
             state.pickedTheme = pickedTheme;
         },
-        changeSelectedMenu(state,pickedMenu) {
+        changeSelectedMenu(state, pickedMenu) {
             state.pickedMenu = pickedMenu
         },
-        updateWasRenderedAboutMe(state,wasRenderedValue) {
+        updateWasRenderedAboutMe(state, wasRenderedValue) {
             state.wasAboutMeRendered = wasRenderedValue
         },
-        updateContact(state,oElement) {
+        updateContact(state, oElement) {
             switch (oElement.id) {
                 case "name":
                     state.contact.name = oElement.value;

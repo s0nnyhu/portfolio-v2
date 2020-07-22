@@ -1,6 +1,6 @@
 <template>
   <div class="about-me">
-    <typewriter ref="typewriter_about_me" :interval="22" :style="{ visibility: status }">
+    <typewriter ref="typewriter_about_me" :interval="30" :style="{ visibility: status }">
       <div v-if="wasAboutMeRendered === false" v-html="aboutMeText"></div>
     </typewriter>
     <div v-if="wasAboutMeRendered === true" v-html="aboutMeText"></div>
@@ -23,7 +23,7 @@ export default {
   },
   methods: {
     // $emit
-    type: function() {
+    type: function () {
       if (!this.wasAboutMeRendered) {
         this.status = "visible";
         this.$refs.typewriter_about_me.$emit("typewrite");
@@ -44,5 +44,8 @@ export default {
 <style>
 .about-me {
   margin-bottom: 150px;
+}
+p {
+  font-size: 1.1rem;
 }
 </style>
