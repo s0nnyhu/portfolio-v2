@@ -45,18 +45,4 @@ video {
   background-size: 3px 3px;
   z-index: 2;
 }
-h1 {
-  text-align: center;
-  color: #fff;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-  z-index: 3;
-  max-width: 400px;
-  width: 100%;
-  height: 50px;
-}
 </style>
