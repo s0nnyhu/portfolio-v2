@@ -1,7 +1,7 @@
 <template>
   <div class="bg-video-wrap">
-    <!-- <div class="overlay"></div>
-    <h1>Fullscreen video background</h1>-->
+    <div class="overlay"></div>
+    <!-- <h1>Fullscreen video background</h1> -->
     <audio autoplay>
       <source
         src="http://docs.google.com/uc?export=open&id=1s6Q8mULC5nVp5dJnA64j-I8G7N9T3W2s"
@@ -23,9 +23,14 @@ export default {
   overflow: hidden;
   width: 100%;
   height: 100vh;
-  /* background: url(https://designsupply-web.com/samplecontent/vender/codepen/20181014.png)
-    no-repeat center center/cover; */
+  background-image: url("../assets/img/trololo.gif");
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
+
 video {
   min-width: 100%;
   min-height: 100vh;
@@ -38,9 +43,8 @@ video {
   top: 0;
   left: 0;
   background-image: linear-gradient(
-    45deg,
     rgba(0, 0, 0, 0.3) 50%,
-    rgba(0, 0, 0, 0.7) 50%
+    rgba(0, 0, 0, 0.3) 50%
   );
   background-size: 3px 3px;
   z-index: 2;
